@@ -80,15 +80,8 @@
   </div>
   <script type="module" src="/static/js/app.js"></script>
   <script type="module" src="/static/js/home.js"></script>
-    <!--
-    <div class='codepro-music-box'>
-  <button class='codepro-music-box-toggle-btn'>
-    <a title='Play music'><i class='fa fa-music'></i></a>
-  </button>
-  <audio id="custom-audio" src="https://dev.htpn.vn/upload/60793ece13f8b78d16ab30e37db33ab0.mp3"></audio>
-</div>
-
-<style>
+    
+  <style>
   .codepro-music-box {
     position: fixed;
     width: 300px;
@@ -118,6 +111,27 @@
     border-radius: 50%;
   }
 
+  /* Giữ icon căn giữa tuyệt đối */
+  .codepro-music-box-toggle-btn i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Dấu xẹt ngang */
+  .codepro-music-box-toggle-btn.muted::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 26px;
+    height: 2px;
+    background: red;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    pointer-events: none;
+  }
+
   @media (max-width: 991px) {
     .codepro-music-box {
       width: 250px;
@@ -133,18 +147,30 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<div class="codepro-music-box">
+  <audio id="custom-audio" src="link-bai-hat.mp3"></audio>
+  <button class="codepro-music-box-toggle-btn">
+    <i class="fa fa-music"></i>
+  </button>
+</div>
+
 <script>
   $(document).ready(function () {
     const audio = document.getElementById("custom-audio");
-    $(".codepro-music-box-toggle-btn").on("click", function () {
+    const btn = $(".codepro-music-box-toggle-btn");
+
+    btn.on("click", function () {
       if (audio.paused) {
         audio.play();
+        btn.removeClass("muted");
       } else {
         audio.pause();
+        btn.addClass("muted");
       }
     });
   });
 </script>
-    -->
+
+    
   </body>
 </html>
